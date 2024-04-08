@@ -1,4 +1,4 @@
-
+try{
 const modDescription = {
 '统一图标库':
 `<h2 id="description" style="">描述</h2><p cohinline="true">这是一个为模组开发者提供了几个与游戏 UI 样式相匹配的图标集合的模组。这意味着模组开发者不必浪费时间寻找或重新创建图标，或者手动将它们加载到游戏的 UI 中。</p><p cohinline="true">除非你有使用它的模组，否则它不会起任何作用，一旦有模组使用它，它就是必需的。</p><h3 id="modders">模组开发者</h3><p cohinline="true">所有图标都会自动预注入到游戏的 UI 中，并可通过 coui://uil/StyleName/IconName 访问。更多详情，请参阅 GitHub 页面。</p><p cohinline="true">初始样式包括标准、深色和彩色。稍后将添加更多样式。欢迎提出新样式的请求！</p>`,
@@ -543,8 +543,12 @@ if(typeof(window.rif)!='undefined'){
 
     }
 }
+
 window.modI18load = '汉化已加载'
 window.modName = modName
 window.modDescription = modDescription
+}catch{
+    window.modI18load = '汉化加载失败'
+}
     
     

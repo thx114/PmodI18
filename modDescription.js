@@ -415,18 +415,68 @@ const modDescription = {
                 }
             }
         }
-        function rifrun(){
-            const 模组名称 = [rif().class('ModItem-module__header--oT5UM'),rif({func: [DescriptionICN]}).class('Title-module__root--xiZEl'),rif().class('RowListItem-module__text--GcEUH')]
+    
+        window.__rifrun =  function rifrun(){
+            const 模组名称 = [
+                rif().class('ModItem-module__header--oT5UM'),
+                rif({func: [DescriptionICN]}).class('Title-module__root--xiZEl'),
+                rif().class('RowListItem-module__text--GcEUH'),
+                rif().class('StackItemTextContent-module__textContentTitle--PBv0L')
+            ]
             window.REPLACEITEMADD = {
                 模组: RE(
                     模组名称,modName
                 )
             }
         }
-        setInterval(rifrun, 135);
+        __rifrun()
+        window.FUNCADD = ()=>{
+            window.__rifrun()
     
+            let hoverBox
+            if(!document.querySelector('#hover-box') ){
+                hoverBox = document.createElement('div');
+                Object.assign(hoverBox.style, {
+                    position: 'absolute',
+                    display: 'none',
+                    width : "90rem",
+                    pointerEvents: 'none',
+                    textShadow: '3px 3px 6px rgba(0, 0, 0, 0.7)'
+                });
+                hoverBox.id = 'hover-box';
+                document.body.appendChild(hoverBox);
+            }else{hoverBox = document.querySelector('#hover-box')}
+    
+            const Mods = document.querySelectorAll('.Grid-module__gridItemRoot--LcZPX')
+            Mods.forEach(mod=>{
+                if (!mod.hasAttribute("data-event-listener-added")) {
+                    mod.addEventListener("mousemove", function(event) {
+                        if(window.HoverBoxShow){return}
+    
+                        window.HoverBoxShow = true
+    
+                        const modName = mod.querySelector('.ModItem-module__header--oT5UM').textContent
+                        hoverBox.innerHTML = `<div class="App-module__app--d6WLO" style="width: 90.000000rem;"><div class="Description-module__content--xvNm0" style="width: 90.000000rem;"><div class="Markdown-module__root--V6znJ">${modDescription[modName]}</div></div></div>`
+    
+                        hoverBox.style.left = (event.pageX + 10) + "px";
+                        hoverBox.style.top = (event.pageY + 10) + "px";
+    
+                        hoverBox.style.display = "block";
+    
+    
+                    });
+                    mod.addEventListener("mouseleave", function() {
+                        hoverBox.style.display = "none";
+                        window.HoverBoxShow = false
+                    });
+                
+                    mod.setAttribute("data-event-listener-added", "true");
+                }
+            })
+        }
     }
     window.modI18load = '汉化已加载'
     window.modName = modName
     window.modDescription = modDescription
+    
     

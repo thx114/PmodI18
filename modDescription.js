@@ -415,14 +415,16 @@ const modDescription = {
                 }
             }
         }
-        const 模组名称 = [rif().class('ModItem-module__header--oT5UM'),rif({func: [DescriptionICN]}).class('Title-module__root--xiZEl'),rif().class('RowListItem-module__text--GcEUH')]
-    
-        var replaceItemAdd = {
-            模组: RE(
-                模组名称,modName
-            )
-    
+        function rifrun(){
+            const 模组名称 = [rif().class('ModItem-module__header--oT5UM'),rif({func: [DescriptionICN]}).class('Title-module__root--xiZEl'),rif().class('RowListItem-module__text--GcEUH')]
+            window.REPLACEITEMADD = {
+                模组: RE(
+                    模组名称,modName
+                )
+            }
         }
+
+        setInterval(replaceContent, 135);
     
     }
     window.modI18load = '汉化已加载'

@@ -417,7 +417,7 @@ const modDescription = {
         }
         const 模组名称 = [rif().class('ModItem-module__header--oT5UM'),rif({func: [DescriptionICN]}).class('Title-module__root--xiZEl'),rif().class('RowListItem-module__text--GcEUH')]
     
-        const replaceItemAdd = {
+        var replaceItemAdd = {
             模组: RE(
                 模组名称,modName
             )

@@ -384,7 +384,7 @@ const modDescription = {
     "Moonbeam Radio ~ NIGHTMODE [DMCA FREE]": "月光电台 ~ 夜间模式",
     "Lapland Map Theme":'拉普兰地图主题'
     }
-    if(typeof (rif)!='undefined'){
+    if(rif){
         const DescriptionICN = (e)=>{
             if(e.classList.contains('Title-module__root--xiZEl')){
                 const name = e.textContent

@@ -385,6 +385,12 @@ const modDescription = {
     "Lapland Map Theme":'拉普兰地图主题'
     }
     if(rif){
+        window.KEYS = {
+            shift: false,
+            alt: false,
+            ctrl: false,
+            key:false,
+        }
         const DescriptionICN = (e)=>{
             if(e.classList.contains('Title-module__root--xiZEl')){
                 const name = e.textContent
@@ -429,6 +435,26 @@ const modDescription = {
                 )
             }
         }
+    
+        document.addEventListener('keydown', async (event) => {
+            window.KEYS = {
+                shift: event.shiftKey,
+                alt: event.altKey,
+                ctrl: event.ctrlKey,
+                key: event.code,
+            }
+            if(document.querySelector('#hover-box')&&event.shiftKey){document.querySelector('#hover-box').style.display='block'}
+        })
+        document.addEventListener('keyup', async (event) => {
+            window.KEYS = {
+                shift: event.shiftKey,
+                alt: event.altKey,
+                ctrl: event.ctrlKey,
+                key: event.code,
+            }
+            if(document.querySelector('#hover-box')&&(!event.shiftKey)){document.querySelector('#hover-box').style.display='none'}
+        })
+    
         __rifrun()
         window.FUNCADD = ()=>{
             window.__rifrun()
@@ -440,8 +466,10 @@ const modDescription = {
                     position: 'absolute',
                     display: 'none',
                     width : "90rem",
+                    height :'199rem',
                     pointerEvents: 'none',
-                    textShadow: '3px 3px 6px rgba(0, 0, 0, 0.7)'
+                    textShadow: '3px 3px 6px rgba(0, 0, 0, 0.7)',
+                    backgroundImage: 'linear-gradient(64.000000deg,rgba(14, 17, 24, 0.4), rgba(38, 46, 63, 0.4)), linear-gradient(to bottom,rgba(19, 23, 36, 0.4), rgba(19, 23, 36, 0.4))'
                 });
                 hoverBox.id = 'hover-box';
                 document.body.appendChild(hoverBox);
@@ -452,18 +480,15 @@ const modDescription = {
                 if (!mod.hasAttribute("data-event-listener-added")) {
                     mod.addEventListener("mousemove", function(event) {
                         if(window.HoverBoxShow){return}
-    
+                        
+                        
+                
                         window.HoverBoxShow = true
-    
+                
                         const modName = mod.querySelector('.ModItem-module__header--oT5UM').textContent
                         hoverBox.innerHTML = `<div class="App-module__app--d6WLO" style="width: 90.000000rem;"><div class="Description-module__content--xvNm0" style="width: 90.000000rem;"><div class="Markdown-module__root--V6znJ">${modDescription[modName]}</div></div></div>`
-    
-                        hoverBox.style.left = (event.pageX + 10) + "px";
-                        hoverBox.style.top = (event.pageY + 10) + "px";
-    
-                        hoverBox.style.display = "block";
-    
-    
+                        
+                        if(window.KEYS.shift){hoverBox.style.display = "block";}
                     });
                     mod.addEventListener("mouseleave", function() {
                         hoverBox.style.display = "none";
